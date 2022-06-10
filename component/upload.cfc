@@ -12,7 +12,7 @@
                         <cfset arrayAppend(finalArray,content.1[i])/>
                         <cfdump var=#finalArray[i]#/>
                     </cfloop> 
-                   </br>
+                   </br></br>
                     <cfset rows=form.inputValue/>
                     <cfset elems    = arrayLen(finalArray)>
                     <cfset columns  = ceiling(elems/rows) />
@@ -25,8 +25,6 @@
                     <cfset variables.elems_in_col = ArrayNew(1) /> 
                     <cfset variables.elem_left = elems />
                     <cfloop index="col" from="1" to="#columns#">
-                        <cfdump var="#columns#">
-                        <cfdump var="#col#">
                         <cfif columns EQ col >
                             <cfbreak>
                         </cfif>
@@ -38,16 +36,14 @@
                         <cfset elem_left = elem_left - elems_in_col[col] >
                         <cfset col= col+1 />
                     </cfloop>
-                    <table border="1">
+                    <table>
                         <cfloop index="row" from="0" to="#rows#">
                             <tr>
-                                <cfdump var="#row#">
-                                <cfdump var="#rows#">
                                 <cfset col=1 >
                                 <cfloop condition="col LT columns">
                                     <cfif elems_in_col[col] LT row + 1>
-                                        
-                                        <cfcontinue>
+                                        <td>&nbsp;</td>
+                                        <cfbreak>
                                     </cfif>
                                     <cfset idx = 1 >
                                     <cfset i = col-1 >
